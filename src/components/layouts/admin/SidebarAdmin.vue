@@ -143,6 +143,13 @@ const links = reactive([
 			name: 'admin-credit-packages',
 		},
 	},
+  {
+		title: 'Transactions',
+		icon: '',
+		url: {
+			name: 'admin-transactions',
+		},
+	},
 ]);
 
 
