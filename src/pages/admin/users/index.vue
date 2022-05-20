@@ -55,7 +55,7 @@
         </el-table-column>
 
         <ElTableColumn
-          label="عملیات"
+          label="action"
           min-width="130"
         >
           <template #default="scope">
