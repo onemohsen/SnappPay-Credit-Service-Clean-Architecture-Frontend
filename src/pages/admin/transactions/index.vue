@@ -32,7 +32,11 @@
               <span
                 title="User Wallet Balance"
                 class="font-bold text-blue-600"
-              >{{ scope?.row?.user?.name }} ( {{ scope?.row?.user?.wallet_balance?.toLocaleString() }} )</span>
+              >
+                #
+                {{ scope?.row?.user?.id ?? '-' }}
+                {{ scope?.row?.user?.name ?? '-' }}
+              </span>
             </router-link>
           </template>
         </el-table-column>
@@ -115,10 +119,12 @@
 
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import Transaction from "@/models/Transaction";
 import { useRoute } from 'vue-router';
 import useErrorHandler from '@/composables/useErrorHandler';
+import useUrlRouteQuery from '@/composables/useUrlRouteQuery';
+
 
 const items = ref([]);
 const route = useRoute();
@@ -135,9 +141,28 @@ async function getItems () {
     
 }
 
-(async () => {
-    await getItems();
-})();
+
+onMounted(async () => {
+	if (Object.keys(route.query).length) {
+		await getModelItemsWithRoute();
+	}
+    else {
+        await getItems();
+    }
+});
+
+
+
+const getModelItemsWithRoute = async () => {
+	const page = route.query.page || 1;
+	const {
+		data: data,
+		meta: meta,
+	} = await useUrlRouteQuery().getModelWithUrlQuery(Transaction, 'transactions?include=user,transactionable&', route.query, page);
+	items.value.data = data;
+    items.value.meta = meta;
+
+};
 
 
 </script>

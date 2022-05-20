@@ -59,7 +59,21 @@
           min-width="130"
         >
           <template #default="scope">
-            <div class="flex items-center space-x-2 space-x-reverse">
+            <div class="flex items-center space-x-2">
+              <RouterLink
+                :to="{ name: 'admin-transactions', query:{'include':'user,transactionable','filter[user_id]': scope.row.id }}"
+              >
+                <ElTooltip
+                  class="item"
+                  effect="dark"
+                  content="transactions"
+                  placement="bottom"
+                >
+                  <div>
+                    <IconEye class="w-4 h-4 text-gray-400 hover:text-gray-700" />
+                  </div>
+                </ElTooltip>
+              </RouterLink>
               <RouterLink
                 :to="{ name: 'admin-users-edit-id', params: { id: scope.row.id} }"
               >
