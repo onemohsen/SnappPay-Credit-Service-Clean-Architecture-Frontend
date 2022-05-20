@@ -129,6 +129,13 @@ const links = reactive([
 			name: 'admin-products',
 		},
 	},
+  {
+		title: 'User',
+		icon: '',
+		url: {
+			name: 'admin-users',
+		},
+	},
 ]);
 
 
