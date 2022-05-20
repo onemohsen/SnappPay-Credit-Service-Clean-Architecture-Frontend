@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.el-notification__content, .el-notification__title, .el-notification__closeBtn, .el-notification__icon, .el-notification .el-icon-warning, .el-notification .el-icon-success, .el-notification .el-icon-error {
+	@apply text-white;
+}
