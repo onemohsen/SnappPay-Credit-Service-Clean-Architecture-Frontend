@@ -150,6 +150,20 @@ const links = reactive([
 			name: 'admin-transactions',
 		},
 	},
+  {
+		title: 'Buy Product',
+		icon: '',
+		url: {
+			name: 'admin-buy-product',
+		},
+	},
+  {
+		title: 'Activation Credit Package',
+		icon: '',
+		url: {
+			name: 'admin-activation-credit-package',
+		},
+	},
 ]);
 
 

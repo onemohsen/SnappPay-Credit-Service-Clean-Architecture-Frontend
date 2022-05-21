@@ -1,10 +1,11 @@
 import { Model as BaseModel } from 'vue-api-query'
+import projectConfig from '@/composables/useProjectConfig'
 
 export default class Model extends BaseModel {
 
   // Define a base url for a REST API
   baseURL() {
-    return 'http://snapp-pay-credit-service.test/api/v1'
+    return projectConfig.api
   }
 
   // Implement a default request method
