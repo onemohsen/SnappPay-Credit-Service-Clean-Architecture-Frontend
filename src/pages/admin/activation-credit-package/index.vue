@@ -54,7 +54,7 @@ import User from '@/models/User';
 import useErrorHandler from '../../../composables/useErrorHandler';
 import useNotification from '../../../composables/useNotification';
 import axios from 'axios';
-import projectConfig from '@/composables/useProjectConfig'
+import { useAuth } from '~/plugins/auth';
 
 
 // do not use same name with ref
@@ -65,11 +65,12 @@ const form = reactive({
 
 const creditPackages = ref([]);
 const users = ref([]);
+const auth = useAuth();
+
 
 (async () => {
   const {data : creditPackagesData} = await CreditPackage.all();
   creditPackages.value = creditPackagesData;
-  console.log(creditPackages.value);
   const {data: userData} = await User.all();
   users.value = userData;
 })();
@@ -78,10 +79,12 @@ const users = ref([]);
 const onSubmit = async () => {
 
     try {
+        const baseUrl = import.meta.env.VITE_API_URL ?? 'http://localhost:3000/api/v1';
         const req = axios.create({
-            baseURL: projectConfig.api,
+            baseURL: baseUrl,
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': auth.getToken.value,
             }
         });
 

@@ -54,7 +54,7 @@ import User from '@/models/User';
 import useErrorHandler from '../../../composables/useErrorHandler';
 import useNotification from '../../../composables/useNotification';
 import axios from 'axios';
-import projectConfig from '@/composables/useProjectConfig'
+import { useAuth } from '~/plugins/auth';
 
 
 // do not use same name with ref
@@ -65,26 +65,26 @@ const form = reactive({
 
 const products = ref([]);
 const users = ref([]);
+const auth = useAuth();
 
 (async () => {
   const {data : productData} = await Product.all();
   products.value = productData;
-  console.log(products.value);
   const {data: userData} = await User.all();
   users.value = userData;
 })();
 
 
 const onSubmit = async () => {
-
+        
     try {
         const req = axios.create({
-            baseURL: projectConfig.api,
+            baseURL: import.meta.env.VITE_API_URL ?? 'http://localhost:3000/api/v1',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': auth.getToken.value,
             }
         });
-
         await req.post(
             `/transactions/users/${form.user_id}/products/${form.product_id}`,
             {product_id: form.product_id,user_id: form.user_id,}
@@ -94,6 +94,7 @@ const onSubmit = async () => {
         form.user_id = '';
     } catch (error) {
         useErrorHandler().handler(error);
+        throw error;
     }
 }
 </script>

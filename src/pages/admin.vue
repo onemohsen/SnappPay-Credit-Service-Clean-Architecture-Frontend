@@ -7,3 +7,12 @@
     </div>
   </div>
 </template>
+
+<route>
+{
+  meta:{
+    auth: true,
+    middlewares: 'adminPanelPermissions',
+  }
+}
+</route>
