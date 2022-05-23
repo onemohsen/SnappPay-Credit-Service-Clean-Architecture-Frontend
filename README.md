@@ -1,19 +1,23 @@
-# SnappPayCreditService
+# SnappPayCreditService FrontEnd
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+This project started developing with Vue 3 in Vite.
 
 ```sh
 npm install
+```
+
+#### Environment Variables
+
+To run this project, you will need to add the following environment variables to .env file.
+
+```bash
+  cp .env.example .env
+```
+
+Finally add the settings below to end of file :
+
+```bash
+    VITE_API_URL = http://localhost:8000/api/v1
 ```
 
 ### Compile and Hot-Reload for Development
