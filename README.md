@@ -17,7 +17,7 @@ To run this project, you will need to add the following environment variables to
 Finally add the settings below to end of file :
 
 ```bash
-    VITE_API_URL = http://localhost:8000/api/v1
+    VITE_API_URL = http://localhost:8080/api/v1
 ```
 
 ### Compile and Hot-Reload for Development
